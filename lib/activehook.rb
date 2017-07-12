@@ -1,4 +1,5 @@
 require 'activehook/version'
+require 'securerandom'
 
 module ActiveHook
   class << self
