@@ -1,3 +1,5 @@
+require 'httparty'
+
 module ActiveHook
   REQUEST_HEADERS = {
     "Content-Type" => "application/json",
@@ -30,12 +32,12 @@ module ActiveHook
       private
 
       def post_hook
-        http = Net::HTTP.new(uri.host, uri.port)
         measure_response_time do
-          @response = http.post(uri.path, @hook.final_payload, final_headers)
+          @response = HTTParty.post(uri.to_s, body: @hook.final_payload, headers: final_headers)
         end
         response_status(@response)
-      rescue
+      rescue e
+        puts(e)
         :error
       end
 

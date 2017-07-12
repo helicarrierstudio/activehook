@@ -1,3 +1,5 @@
+require 'securerandom'
+
 module ActiveHook
   class Hook
     attr_accessor :token, :uri, :id, :key, :retry_max, :retry_time, :created_at
