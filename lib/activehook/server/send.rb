@@ -69,7 +69,7 @@ module ActiveHook
       end
 
       def final_headers
-        { ActiveHook.config.signature_header => @hook.signature }.merge(REQUEST_HEADERS)
+        { 'X-Webhook-Signature' => @hook.signature }.merge(REQUEST_HEADERS)
       end
     end
   end
