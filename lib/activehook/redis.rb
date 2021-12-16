@@ -10,7 +10,7 @@ module ActiveHook
   class ConnectionPool
     def self.create
       ::ConnectionPool.new(size: ActiveHook.config.redis_pool) do
-        Redis.new(url: ActiveHook.config.redis_url)
+        Redis.new(url: ActiveHook.config.redis_url, ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE })
       end
     end
   end
